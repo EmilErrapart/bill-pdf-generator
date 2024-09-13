@@ -1,11 +1,10 @@
-use wkhtmltopdf::{PdfApplication, Orientation, Size};
+use wkhtmltopdf::{PageSize, PdfApplication};
 
 fn main() {
-    let html = r#"<html><body><div>Hello World!</div></body></html>"#;
+    let html = include_str!("templates/template.html");
     let pdf_app = PdfApplication::new().expect("Failed to init PDF application");
     let mut pdfout = pdf_app.builder()
-        .orientation(Orientation::Portrait)
-        .margin(Size::Millimeters(17))
+        .page_size(PageSize::A4)
         .build_from_html(&html)
         .expect("failed to build pdf");
 

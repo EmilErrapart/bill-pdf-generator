@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            body {
+                font-family: sans-serif;
+                padding: 40px;
+            }
+            
+            .text-small {
+                font-size: 14px;
+            }
+
+            .text-normal {
+                font-size: 18px;
+            }
+
+            .text-large {
+                font-size: 24px;
+            }
+
+            .text-bold {
+                font-weight: bolder;
+            }
+
+            .header-container, .header-fields-container {
+                display: -webkit-box;
+            }
+
+            .header-fields-container {
+                width: 40%;
+                -webkit-box-pack: justify;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            .text-right {
+                text-align: right;
+            }
+
+            .text-left {
+                text-align: left;
+            }
+
+            .title-container, .first-column {
+                width: 60%;
+            }
+            
+            table {
+                border-collapse: collapse;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            .client-info-container {
+                margin-top: 30px;
+            }
+
+            th {
+                background-color: rgb(240, 240, 240);
+            }
+
+            tr {
+                height: 32px;
+                border-bottom: 1px solid rgb(221, 221, 221);
+            }
+
+            td, th {
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header-container">
+            <div class="title-container text-large text-bold">Test OÜ</div>
+                <div class="header-fields-container">
+                    <div class="header-field-name-container">
+                        <div class="text-normal text-bold">Arve number</div>
+                        <div class="text-normal">Arve kuupäev</div>
+                        <div class="text-normal">Maksetähtaeg</div>
+                    </div>
+                    <div class="header-info-container">
+                        <div class="text-normal text-bold text-right">MR0023</div>
+                        <div class="text-normal text-right">30.08.2024</div>
+                        <div class="text-normal text-right">13.09.2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="client-info-container">
+            <div class="text-normal text-bold">Klient AS</div>
+            <div class="text-normal">Kajaka 15a</div>
+            <div class="text-normal">12452 Tallinn</div>
+            <div class="text-normal">Reg. nr: 132523462</div>
+        </div>
+        <table>
+            <tr class="table-header text-left text-small text-bold ">
+                <th class="first-column">Toode/teenus</th>
+                <th>Hind</th>
+                <th>Kogus</th>
+                <th>Summa</th>
+                <th>KM</th>
+                <th class="text-right">Kokku</th>
+            </tr>
+            <tr class="table-row text-left text-small">
+                <td class="first-column">Sisu 1</td>
+                <td>5,00 €</td>
+                <td>30 h</td>
+                <td>150,00 €</td>
+                <td>33,00 €</td>
+                <td class="text-right">183,00 €</td>
+            </tr>
+            <tr class="table-row text-left text-small">
+                <td class="first-column">Sisu 2</td>
+                <td>3,75 €</td>
+                <td>10 h</td>
+                <td>37,50 €</td>
+                <td>8,25 €</td>
+                <td class="text-right">45,75 €</td>
+            </tr>
+            <tr class="table-row text-left text-small">
+                <td class="first-column">Sisu 3</td>
+                <td>0,00 €</td>
+                <td>3 h</td>
+                <td>0,00 €</td>
+                <td>0,00 €</td>
+                <td class="text-right">0,00 €</td>
+            </tr>
+            <tr class="table-row text-left text-small">
+                <td class="first-column">Sisu 4</td>
+                <td>5,00 €</td>
+                <td>80 h</td>
+                <td>400,00 €</td>
+                <td>88,00 €</td>
+                <td class="text-right">488,00 €</td>
+            </tr>
+        </table>
+    </body>
+</html>
