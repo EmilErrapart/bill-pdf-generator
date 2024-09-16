@@ -3,31 +3,25 @@
         <meta charset="utf-8">
         <style>
             body {
-                font-family: sans-serif;
-                padding: 40px;
+                font-family: "DejaVu Sans Condensed", sans-serif;
+                padding: 76px;
             }
             
-            .text-small {
-                font-size: 14px;
-            }
-
-            .text-normal {
-                font-size: 18px;
-            }
-
-            .text-large {
-                font-size: 24px;
+            .title-container {
+                font-size: 26px;
             }
 
             .text-bold {
-                font-weight: bolder;
+                font-weight: bold;
             }
 
-            .header-container, .header-fields-container {
+            .header-container {
                 display: -webkit-box;
             }
 
             .header-fields-container {
+                display: -webkit-box;
+                font-size: 18px;
                 width: 40%;
                 -webkit-box-pack: justify;
             }
@@ -50,12 +44,14 @@
             
             table {
                 border-collapse: collapse;
-                margin-top: 30px;
-                margin-bottom: 30px;
+                margin-top: 32px;
+                margin-bottom: 32px;
+                font-size: 14px;
             }
 
             .client-info-container {
-                margin-top: 30px;
+                margin-top: 24px;
+                font-size: 18px;
             }
 
             th {
@@ -63,40 +59,54 @@
             }
 
             tr {
-                height: 32px;
+                height: 34px;
                 border-bottom: 1px solid rgb(221, 221, 221);
             }
 
             td, th {
                 padding: 5px;
             }
+
+            .total-container {
+                display: -webkit-box;
+                -webkit-box-pack: end;
+                font-size: 14px;
+            }
+
+            .total-values {
+                margin-left: 24px;
+                margin-right: 5px;
+            }
+
+            p {
+                margin: 3px 0px;
+            }
         </style>
     </head>
     <body>
         <div class="header-container">
-            <div class="title-container text-large text-bold">Test OÜ</div>
-                <div class="header-fields-container">
-                    <div class="header-field-name-container">
-                        <div class="text-normal text-bold">Arve number</div>
-                        <div class="text-normal">Arve kuupäev</div>
-                        <div class="text-normal">Maksetähtaeg</div>
-                    </div>
-                    <div class="header-info-container">
-                        <div class="text-normal text-bold text-right">MR0023</div>
-                        <div class="text-normal text-right">30.08.2024</div>
-                        <div class="text-normal text-right">13.09.2024</div>
-                    </div>
+            <div class="title-container text-bold">Test OÜ</div>
+            <div class="header-fields-container">
+                <div>
+                    <p class="text-bold">Arve number</p>
+                    <p>Arve kuupäev</p>
+                    <p>Maksetähtaeg</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-bold">MR0023</p>
+                    <p>30.08.2024</p>
+                    <p>13.09.2024</p>
                 </div>
             </div>
         </div>
         <div class="client-info-container">
-            <div class="text-normal text-bold">Klient AS</div>
-            <div class="text-normal">Kajaka 15a</div>
-            <div class="text-normal">12452 Tallinn</div>
-            <div class="text-normal">Reg. nr: 132523462</div>
+            <div class="text-bold">Klient AS</div>
+            <p>Kajaka 15a</p>
+            <p>12452 Tallinn</p>
+            <p>Reg. nr: 132523462</p>
         </div>
         <table>
-            <tr class="table-header text-left text-small text-bold ">
+            <tr class="table-header text-left text-bold">
                 <th class="first-column">Toode/teenus</th>
                 <th>Hind</th>
                 <th>Kogus</th>
@@ -104,32 +114,32 @@
                 <th>KM</th>
                 <th class="text-right">Kokku</th>
             </tr>
-            <tr class="table-row text-left text-small">
-                <td class="first-column">Sisu 1</td>
+            <tr class="table-row text-left">
+                <td>Sisu 1</td>
                 <td>5,00 €</td>
                 <td>30 h</td>
                 <td>150,00 €</td>
                 <td>33,00 €</td>
                 <td class="text-right">183,00 €</td>
             </tr>
-            <tr class="table-row text-left text-small">
-                <td class="first-column">Sisu 2</td>
+            <tr class="table-row text-left">
+                <td>Sisu 2</td>
                 <td>3,75 €</td>
                 <td>10 h</td>
                 <td>37,50 €</td>
                 <td>8,25 €</td>
                 <td class="text-right">45,75 €</td>
             </tr>
-            <tr class="table-row text-left text-small">
-                <td class="first-column">Sisu 3</td>
+            <tr class="table-row text-left">
+                <td>Sisu 3</td>
                 <td>0,00 €</td>
                 <td>3 h</td>
                 <td>0,00 €</td>
                 <td>0,00 €</td>
                 <td class="text-right">0,00 €</td>
             </tr>
-            <tr class="table-row text-left text-small">
-                <td class="first-column">Sisu 4</td>
+            <tr class="table-row text-left">
+                <td>Sisu 4</td>
                 <td>5,00 €</td>
                 <td>80 h</td>
                 <td>400,00 €</td>
@@ -137,5 +147,17 @@
                 <td class="text-right">488,00 €</td>
             </tr>
         </table>
+        <div class="total-container text-right">
+            <div>
+                <p>Summa:</p>
+                <p>Käibemaks 22%</p>
+                <p class="text-bold">Kokku:</p>
+            </div>
+            <div class="total-values">
+                <p>587,50 €</p>
+                <p>129,25 €</p>
+                <p class="text-bold">716,75 €</p>
+            </div>
+        </div>
     </body>
 </html>
