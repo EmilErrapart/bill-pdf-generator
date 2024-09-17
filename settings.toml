@@ -1,5 +1,28 @@
+unit = "h"
+unit_cost = 10.00
+kbm = 22
+
 [company]
 name = "Ettevõte OÜ"
+email = "example@mail.com"
+registry_no = "1234"
+address = "Aadress 12"
+city = "Rakvere"
+country = "Eesti"
+post_index = "12345"
+kmkr = "EE12345"
 
 [client]
 name = "Klient AS"
+registry_no = "4321"
+address = "Aadress 21"
+city = "Tallinn"
+post_index = "54321"
+
+[[phones]]
+phone_no = "+372 5555 5555"
+phone_type = "Telefon"
+
+[[accounts]]
+bank_name = "Swedbank AS"
+iban = "EE1234567890"

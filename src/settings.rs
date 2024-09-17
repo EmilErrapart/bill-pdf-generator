@@ -6,10 +6,11 @@ use std::path::Path;
 pub struct Settings {
     company: Company,
     client: Client,
-    unit: Option<String>,
-    unit_cost: Option<f64>,
-    accounts: Option<Vec<Account>>,
-    phones: Option<Vec<Phone>>,
+    unit: String,
+    unit_cost: f32,
+    kbm: u32,
+    accounts: Vec<Account>,
+    phones: Vec<Phone>,
 }
 
 impl Settings {
@@ -26,41 +27,104 @@ impl Settings {
     pub fn get_client(&self) -> &Client {
         &self.client
     }
+
+    pub fn get_unit(&self) -> &str {
+        &self.unit
+    }
+
+    pub fn get_unit_cost(&self) -> f32 {
+        self.unit_cost
+    }
+
+    pub fn get_kbm(&self) -> u32 {
+        self.kbm
+    }
+
+    pub fn get_accounts(&self) -> &Vec<Account> {
+        &self.accounts
+    }
+
+    pub fn get_phones(&self) -> &Vec<Phone> {
+        &self.phones
+    }
 }
 
 #[derive(Deserialize)]
 pub struct Company {
     name: String,
-    email: Option<String>,
-    registry_no: Option<String>,
-    adress: Option<String>,
-    city: Option<String>,
-    country: Option<String>,
-    post_index: Option<String>,
-    kmkr: Option<String>,
+    email: String,
+    registry_no: String,
+    address: String,
+    city: String,
+    country: String,
+    post_index: String,
+    kmkr: String,
 }
 
 impl Company {
     pub fn get_name(&self) -> &str {
         &self.name
     }
+
+    pub fn get_email(&self) -> &str {
+        &self.email
+    }
+
+    pub fn get_registry_no(&self) -> &str {
+        &self.registry_no
+    }
+
+    pub fn get_address(&self) -> &str {
+        &self.address
+    }
+
+    pub fn get_city(&self) -> &str {
+        &self.city
+    }
+
+    pub fn get_country(&self) -> &str {
+        &self.country
+    }
+
+    pub fn get_post_index(&self) -> &str {
+        &self.post_index
+    }
+
+    pub fn get_kmkr(&self) -> &str {
+        &self.kmkr
+    }
 }
 
 #[derive(Deserialize)]
 pub struct Client {
     name: String,
-    adress: Option<String>,
-    city: Option<String>,
-    post_index: Option<String>,
-    registry_no: Option<String>,
+    address: String,
+    city: String,
+    post_index: String,
+    registry_no: String,
 }
 
 impl Client {
     pub fn get_name(&self) -> &str {
         &self.name
     }
-}
 
+    pub fn get_address(&self) -> &str {
+        &self.address
+    }
+
+    pub fn get_city(&self) -> &str {
+        &self.city
+    }
+
+    pub fn get_post_index(&self) -> &str {
+        &self.post_index
+    }
+
+    pub fn get_registry_no(&self) -> &str {
+        &self.registry_no
+    }
+}
 
 #[derive(Deserialize)]
 pub struct Account {
@@ -68,8 +132,28 @@ pub struct Account {
     iban: String,
 }
 
+impl Account {
+    pub fn get_bank_name(&self) -> &str {
+        &self.bank_name
+    }
+
+    pub fn get_iban(&self) -> &str {
+        &self.iban
+    }
+}
+
 #[derive(Deserialize)]
 pub struct Phone {
     phone_no: String,
     phone_type: String,
+}
+
+impl Phone {
+    pub fn get_phone_no(&self) -> &str {
+        &self.phone_no
+    }
+
+    pub fn get_phone_type(&self) -> &str {
+        &self.phone_type
+    }
 }
