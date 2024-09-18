@@ -37,6 +37,7 @@ fn main() {
     body_context.insert("client_post_index", client.get_post_index());
 
     let body_html = Tera::one_off(include_str!("templates/body.html"), &body_context, false).expect("Failed to render template");
+    //html2pdf requires a file path as input so html is saved as a temp file and then read
     let mut body_file = File::create("temp.html").expect("Failed to create temp body.html file");
     body_file.write_all(body_html.as_bytes()).expect("");
     let body_dir = env::current_dir().expect("Failed to get current working directory").join("temp.html");
@@ -66,15 +67,15 @@ fn main() {
         display_header_footer: Some(true),
         print_background: Some(true),
         scale: None,
-        paper_width: Some(8.26772),
-        paper_height: Some(11.7),
+        paper_width: Some(8.27), //A4 dimensions
+        paper_height: Some(11.7), //A4 dimensions
         margin_top: Some(0.7),
-        margin_bottom: Some(1.8),
+        margin_bottom: Some(1.8), //more space for footer
         margin_left: Some(0.7),
         margin_right: Some(0.7),
         page_ranges: None,
         ignore_invalid_page_ranges: None,
-        header_template: Some(" ".to_owned()),
+        header_template: Some(" ".to_owned()), //if left as None or empty string, a default header will print
         footer_template: Some(footer_html),
         prefer_css_page_size: None,
         transfer_mode: None,

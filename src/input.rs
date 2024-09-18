@@ -12,9 +12,9 @@ impl Input {
     pub fn load(settings: &Settings) -> Self {
         let mut input = Self {items: Vec::new()};
         let path = Path::new("./input.csv");
-        let rdr = csv::Reader::from_path(path);
-        for result in rdr.expect("Failed to read csv").deserialize() {
-            let row: CSVRow = result.expect("Failed to serialize input");
+        let mut rdr = csv::Reader::from_path(path).expect("Failed to read csv");
+        for result in rdr.deserialize() {
+            let row: CSVRow = result.expect("Failed to serialize input row");
             input.items.push(Item::new(row, settings));
         }
         input
@@ -113,7 +113,6 @@ impl Cost {
     }
 
     pub fn to_string(&self) -> String {
-        //todo proper formatting
         format!("{:.2} €", self.value).replace(".", ",")
     }
 
