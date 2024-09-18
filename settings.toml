@@ -19,10 +19,10 @@ address = "Aadress 21"
 city = "Tallinn"
 post_index = "54321"
 
-[[phones]]
+[phone]
 phone_no = "+372 5555 5555"
 phone_type = "Telefon"
 
-[[accounts]]
+[account]
 bank_name = "Swedbank AS"
 iban = "EE1234567890"

@@ -1,14 +1,19 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <style>
+            @media print {
+                @page { margin: 0; }
+                body { margin: 1.6cm 1.8cm; }
+            }
+
             body {
                 font-family: "DejaVu Sans Condensed", sans-serif;
-                margin: 0;
             }
             
             .title {
-                font-size: 26px;
+                font-size: 22px;
             }
 
             .text-bold {
@@ -16,14 +21,14 @@
             }
 
             .header {
-                display: -webkit-box;
+                display: flex;
             }
 
             .header-fields {
-                display: -webkit-box;
-                font-size: 18px;
+                display: flex;
+                font-size: 14.5px;
                 width: 40%;
-                -webkit-box-pack: justify;
+                justify-content: space-between;
             }
 
             table {
@@ -44,14 +49,14 @@
             
             table {
                 border-collapse: collapse;
-                margin-top: 32px;
-                margin-bottom: 32px;
-                font-size: 14px;
+                margin-top: 26px;
+                margin-bottom: 26px;
+                font-size: 11px;
             }
 
             .client-info {
-                margin-top: 24px;
-                font-size: 18px;
+                margin-top: 16px;
+                font-size: 14.5px;
             }
 
             th {
@@ -59,27 +64,27 @@
             }
 
             tr {
-                height: 34px;
+                height: 26px;
                 border-bottom: 1px solid rgb(221, 221, 221);
             }
 
             td, th {
-                padding: 5px;
+                padding: 4px;
             }
 
             .total {
-                display: -webkit-box;
-                -webkit-box-pack: end;
-                font-size: 14px;
+                display: flex;
+                justify-content: end;
+                font-size: 11px;
             }
 
             .total-values {
-                margin-left: 24px;
-                margin-right: 5px;
+                margin-left: 19px;
+                margin-right: 4px;
             }
 
             p {
-                margin: 3px 0px;
+                margin: 4px 0px;
             }
         </style>
     </head>

@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use serde::Deserialize;
 use std::fs;
 use std::path::Path;
@@ -9,8 +11,8 @@ pub struct Settings {
     unit: String,
     unit_cost: f32,
     kbm: u32,
-    accounts: Vec<Account>,
-    phones: Vec<Phone>,
+    account: Account,
+    phone: Phone,
 }
 
 impl Settings {
@@ -40,12 +42,12 @@ impl Settings {
         self.kbm
     }
 
-    pub fn get_accounts(&self) -> &Vec<Account> {
-        &self.accounts
+    pub fn get_account(&self) -> &Account {
+        &self.account
     }
 
-    pub fn get_phones(&self) -> &Vec<Phone> {
-        &self.phones
+    pub fn get_phone(&self) -> &Phone {
+        &self.phone
     }
 }
 

@@ -1,43 +1,66 @@
 mod settings;
 mod input;
 
+use std::path::PathBuf;
+use std::env;
+use std::fs::File;
+use std::io::prelude::*;
 use settings::Settings;
 use input::Input;
 use tera::Tera;
-use wkhtmltopdf::{PdfApplication, Size};
+use headless_chrome::{types::PrintToPdfOptions, LaunchOptions};
 
 fn main() {
     let filename = "MR0001".to_string();
 
     let settings = Settings::load();
 
-    let mut context = tera::Context::new();
-    context.insert("bill_no", &filename);
-    context.insert("kbm", &settings.get_kbm());
+    let mut body_context = tera::Context::new();
+    body_context.insert("bill_no", &filename);
+    body_context.insert("kbm", &settings.get_kbm());
 
     let input = Input::load(&settings);
-    context.insert("table_values", &input.to_html());
-    context.insert("sum_total", &input.get_sum_total().to_string());
-    context.insert("kbm_total", &input.get_kbm_total().to_string());
-    context.insert("grand_total", &input.get_grand_total().to_string());
+    body_context.insert("table_values", &input.to_html());
+    body_context.insert("sum_total", &input.get_sum_total().to_string());
+    body_context.insert("kbm_total", &input.get_kbm_total().to_string());
+    body_context.insert("grand_total", &input.get_grand_total().to_string());
 
     let company = settings.get_company();
-    context.insert("company_name", company.get_name());
+    body_context.insert("company_name", company.get_name());
 
     let client = settings.get_client();
-    context.insert("client_name", client.get_name());
-    context.insert("client_address", client.get_address());
-    context.insert("client_registry_no", client.get_registry_no());
-    context.insert("client_city", client.get_city());
-    context.insert("client_post_index", client.get_post_index());
+    body_context.insert("client_name", client.get_name());
+    body_context.insert("client_address", client.get_address());
+    body_context.insert("client_registry_no", client.get_registry_no());
+    body_context.insert("client_city", client.get_city());
+    body_context.insert("client_post_index", client.get_post_index());
 
+    let body_html = Tera::one_off(include_str!("templates/body.html"), &body_context, false).expect("Failed to render template");
+    let mut body_file = File::create("temp.html").expect("Failed to create temp.html file");
+    body_file.write_all(body_html.as_bytes()).expect("");
+    let body_dir = env::current_dir().expect("Failed to get current working directory").join("temp.html");
 
-    let html = Tera::one_off(include_str!("templates/template.html"), &context, false).expect("Failed to render template");
+    let pdf_options = PrintToPdfOptions {
+        landscape: None,
+        display_header_footer: Some(true),
+        print_background: Some(true),
+        scale: None,
+        paper_width: Some(8.26772),
+        paper_height: Some(11.7),
+        margin_top: None,
+        margin_bottom: None,
+        margin_left: None,
+        margin_right: None,
+        page_ranges: None,
+        ignore_invalid_page_ranges: None,
+        header_template: None,
+        footer_template: None,
+        prefer_css_page_size: None,
+        transfer_mode: None,
+    };
 
-    let pdf_app = PdfApplication::new().expect("Failed to init PDF application");
-    let mut pdfout = pdf_app.builder()
-        .margin(Size::Millimeters(18))
-        .build_from_html(&html)
-        .expect("Failed to build pdf");
-    pdfout.save(filename + ".pdf").expect("Failed to save pdf");
+    let launch_options = LaunchOptions::default();
+
+    let output = PathBuf::from(filename + ".pdf");
+    html2pdf::html_to_pdf(body_dir, output, pdf_options, launch_options, None).expect("Failed to print pdf");
 }
