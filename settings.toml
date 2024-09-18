@@ -1,6 +1,9 @@
 unit = "h"
 unit_cost = 10.00
 kbm = 22
+bill_no = "MR0001"
+date = "18.09.2024"
+deadline = "02.10.2024"
 
 [company]
 name = "Ettevõte OÜ"

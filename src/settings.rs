@@ -11,6 +11,9 @@ pub struct Settings {
     unit: String,
     unit_cost: f32,
     kbm: u32,
+    bill_no: String,
+    date: String,
+    deadline: String,
     account: Account,
     phone: Phone,
 }
@@ -32,6 +35,18 @@ impl Settings {
 
     pub fn get_unit(&self) -> &str {
         &self.unit
+    }
+
+    pub fn get_bill_no(&self) -> &str {
+        &self.bill_no
+    }
+
+    pub fn get_date(&self) -> &str {
+        &self.date
+    }
+
+    pub fn get_deadline(&self) -> &str {
+        &self.deadline
     }
 
     pub fn get_unit_cost(&self) -> f32 {

@@ -11,12 +11,13 @@ use tera::Tera;
 use headless_chrome::{types::PrintToPdfOptions, LaunchOptions};
 
 fn main() {
-    let filename = "MR0001".to_string();
-
     let settings = Settings::load();
+    let filename = settings.get_bill_no();
 
     let mut body_context = tera::Context::new();
-    body_context.insert("bill_no", &filename);
+    body_context.insert("bill_no", filename);
+    body_context.insert("date", &settings.get_date());
+    body_context.insert("deadline", &settings.get_deadline());
     body_context.insert("kbm", &settings.get_kbm());
 
     let input = Input::load(&settings);
@@ -81,6 +82,6 @@ fn main() {
 
     let launch_options = LaunchOptions::default();
 
-    let output = PathBuf::from(filename + ".pdf");
+    let output = PathBuf::from(filename.to_owned() + ".pdf");
     html2pdf::html_to_pdf(body_dir, output, pdf_options, launch_options, None).expect("Failed to print pdf");
 }
