@@ -73,21 +73,17 @@ impl Item {
 
     pub fn to_html(&self) -> String {
         HtmlElement::new(HtmlTag::TableRow)
-            .with_child(Self::create_cell(&self.item, false))
-            .with_child(Self::create_cell(&self.cost.to_string(), false))
-            .with_child(Self::create_cell(&self.amount, false))
-            .with_child(Self::create_cell(&self.sum.to_string(), false))
-            .with_child(Self::create_cell(&self.kbm.to_string(), false))
-            .with_child(Self::create_cell(&self.total.to_string(), true))
+            .with_child(Self::create_cell(&self.item))
+            .with_child(Self::create_cell(&self.cost.to_string()))
+            .with_child(Self::create_cell(&self.amount))
+            .with_child(Self::create_cell(&self.sum.to_string()))
+            .with_child(Self::create_cell(&self.kbm.to_string()))
+            .with_child(Self::create_cell(&self.total.to_string()))
         .to_html_string()
     }
 
-    fn create_cell(value: &str, align_right: bool) -> HtmlChild {
-        let mut html = HtmlElement::new(HtmlTag::TableCell).with_child(value.into());
-        if align_right {
-            html = html.with_attribute("class" ,"text-right")
-        }
-        html.into()
+    fn create_cell(value: &str) -> HtmlChild {
+        HtmlElement::new(HtmlTag::TableCell).with_child(value.into()).into()
     }
 
     pub fn get_sum(&self) -> &Cost {

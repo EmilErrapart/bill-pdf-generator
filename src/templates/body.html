@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <style>
             @media print {
-                .total {
+                .total, td {
                     page-break-inside: avoid;
                 }
             }
@@ -40,14 +40,10 @@
                 text-align: right;
             }
 
-            .text-left {
-                text-align: left;
-            }
-
-            .title, .first-column {
+            .title {
                 width: 60%;
             }
-            
+
             table {
                 border-collapse: collapse;
                 margin-top: 26px;
@@ -67,10 +63,11 @@
             tr {
                 height: 26px;
                 border-bottom: 1px solid rgb(221, 221, 221);
+                text-align: left;
             }
 
             td, th {
-                padding: 4px;
+                padding: 6px;
             }
 
             .total {
@@ -82,6 +79,19 @@
             .total-values {
                 margin-left: 19px;
                 margin-right: 4px;
+            }
+
+            td:not(:first-child) {
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
+            td:first-child {
+                width: 60%;
+            }
+
+            td:last-child {
+                text-align: right;
             }
 
             p {
@@ -112,14 +122,19 @@
             <p>Reg. nr: {{ client_registry_no }}</p>
         </div>
         <table>
-            <tr class="text-left text-bold">
-                <th class="first-column">Toode/teenus</th>
-                <th>Hind</th>
-                <th>Kogus</th>
-                <th>Summa</th>
-                <th>KM</th>
-                <th class="text-right">Kokku</th>
-            </tr>{{ table_values }}
+            <thead style="display: table-header-group;">
+                <tr class="text-bold">
+                    <th class="first-column">Toode/teenus</th>
+                    <th>Hind</th>
+                    <th>Kogus</th>
+                    <th>Summa</th>
+                    <th>KM</th>
+                    <th class="text-right">Kokku</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ table_values }}
+            </tbody>
         </table>
         <div class="total text-right">
             <div>
